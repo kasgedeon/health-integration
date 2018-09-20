@@ -15,7 +15,7 @@ class CreatePatientHealthDataTable extends Migration
     {
         Schema::create('patient_health_datas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('patient_id');
+            $table->integer('patient_id'); //patient data belongs to
             $table->string('blood_type');
             $table->string('food_allergies');
             $table->string('drug_allergies');

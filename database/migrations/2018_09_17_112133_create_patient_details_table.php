@@ -19,9 +19,10 @@ class CreatePatientDetailsTable extends Migration
             $table->date('dob');
             $table->string('address');
             $table->string('county');
-            $table->string('mobile'); //clerk id
+            $table->string('mobile');
             $table->string('email');
             $table->string('occupation');
+            $table->integer('patient_id'); //patient details refer to
             $table->timestamps();
         });
     }

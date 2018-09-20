@@ -21,6 +21,7 @@ class CreatePhysicianDetailsTable extends Migration
             $table->string('email');
             $table->string('specialty'); // Cardiology, Neurology, Emergency Medecine, Pediatry
             // Anesthesy, Psychiatry, Gynecology, Ophthalmology, Oncology, General Surgery, Radiology ...
+            $table->integer('physician_id'); // physician details refer to
             $table->timestamps();
         });
     }

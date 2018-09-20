@@ -8,7 +8,7 @@ $factory->define(App\Physician::class, function (Faker $faker) {
         'first_name' => $faker->firstName,
         'other_names' => $faker->lastName,
         'ref_no' => str_random(10),
-        'hospital_id' => $faker->randomDigit,
-        'details_id' => $faker->randomDigit
+        'hospital_id' => $faker->randomDigit
+        //'details_id' => $faker->randomDigit
     ];
 });

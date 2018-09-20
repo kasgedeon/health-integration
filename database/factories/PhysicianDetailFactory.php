@@ -12,6 +12,7 @@ $factory->define(App\PhysicianDetail::class, function (Faker $faker) {
         'specialty' => $faker->randomElement($array = array (
             'Cardiology', 'Neurology', 'Emergency Medecine', 'Pediatry',
             'MAnesthesy', 'Psychiatry', 'Gynecology', 'Ophthalmology', 
-            'Oncology', 'General Surgery', 'Radiology'))
+            'Oncology', 'General Surgery', 'Radiology')),
+        'physician_id' => $faker->numberBetween(1, 15),    
     ];
 });

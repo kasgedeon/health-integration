@@ -18,8 +18,7 @@ class CreatePatientsTable extends Migration
             $table->string('first_name');
             $table->string('other_names');
             $table->string('ref_no');
-            $table->integer('details_id');
-            $table->integer('health_data_id');
+            //$table->integer('details_id');
             $table->integer('created_by'); //clerk id
             $table->timestamps();
         });

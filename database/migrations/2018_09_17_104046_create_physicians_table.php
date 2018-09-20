@@ -19,7 +19,7 @@ class CreatePhysiciansTable extends Migration
             $table->string('other_names');
             $table->string('ref_no');
             $table->integer('hospital_id');
-            $table->integer('details_id');
+            // $table->integer('details_id');
             $table->timestamps();
         });
     }

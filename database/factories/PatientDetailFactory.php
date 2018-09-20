@@ -12,5 +12,6 @@ $factory->define(App\PatientDetail::class, function (Faker $faker) {
         'mobile' => $faker->tollFreePhoneNumber,
         'email' => $faker->safeEmail,
         'occupation' => $faker->jobTitle,
+        'patient_id' => $faker->numberBetween(1, 15)
     ];
 });
