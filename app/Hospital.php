@@ -10,4 +10,11 @@ class Hospital extends Model
     public function physicians(){
         return $this->hasMany('App\Physician', 'hospital_id');
     }
+
+    /*
+    * Get referrals received
+    */
+    public function referrals(){
+        return $this->hasMany('App\Referral', 'to_hospital_id');
+    }
 }

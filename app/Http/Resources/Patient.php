@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Referral as ReferralResource;
+// use App\Http\Resources\PatientDetail as PatientDetailResource;
 
 class Patient extends JsonResource
 {
@@ -14,19 +16,18 @@ class Patient extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        //return parent::toArray($request);
 
-        /*
-        * Custom formatting
+        // Custom formatting
         return [
             'id' => $this->id,
             'first_name' => $this->first_name,
             'other_names' => $this->other_names,
             'reference_no' => $this->ref_no,
+            'referrals' => ReferralResource::collection($this->referrals),
             'created_by' => $this->created_by,
             'created_at' => $this->created_at
         ];
-        */
     }
 
     public function with($request)

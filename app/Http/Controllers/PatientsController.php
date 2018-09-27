@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use App\Patient;
+use App\PatientDetail;
 use App\Http\Resources\Patient as PatientResource;
 
 class PatientsController extends Controller
@@ -19,6 +20,7 @@ class PatientsController extends Controller
     {
         // Get patients -- paginate
         $patients = Patient::paginate(20);
+        $patientDetails = PatientDetail::all();
         /*
         $patients = Patient::all();
         $patients = Patient::orderBy('created_at', 'desc')->get();
