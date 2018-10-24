@@ -8,6 +8,9 @@ class PatientDetail extends Model
 {
     // Relation to Patient
     public function patient(){
+        return $this->belongsTo('App\Patient', 'patient_id');
+
+        /*
         return $this->belongsTo('App\Patient', 'patient_id')->withDefault([
             'id' => 0,
             'sex' => 'Undefined Sex',
@@ -18,5 +21,6 @@ class PatientDetail extends Model
             'email' => 'Unknown Email Address',
             'occupation' => 'Unknown Occupation'
         ]);
+        */
     }
 }

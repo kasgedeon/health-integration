@@ -8,6 +8,9 @@ class PatientHealthData extends Model
 {
     // Relation to Patient
     public function patient(){
+        return $this->belongsTo('App\Patient', 'patient_id');
+
+        /*
         return $this->belongsTo('App\Patient', 'patient_id')->withDefault([
             'id' => 0,
             'blood_type' => 'Unknown Blood Group',
@@ -15,5 +18,6 @@ class PatientHealthData extends Model
             'drug_allergies' => 'None',
             'genetic_conditions' => 'None'
         ]);
+        */
     }
 }

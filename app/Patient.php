@@ -10,7 +10,16 @@ class Patient extends Model
     * Get details related to Patient
     */
     public function details(){
-        return $this->hasOne('App\PatientDetail', 'patient_id');
+        return $this->hasOne('App\PatientDetail', 'patient_id')->withDefault([
+            'id' => 0,
+            'sex' => 'Undefined Sex',
+            'dob' => 'Unknown Date Of Birth',
+            'address' => 'Unknown Address',
+            'county' => 'Unknown County',
+            'mobile' => 'Unknown Mobile Phone',
+            'email' => 'Unknown Email Address',
+            'occupation' => 'Unknown Occupation'
+        ]);
     }
 
     /*
@@ -18,7 +27,13 @@ class Patient extends Model
     * E.g. Blood Type, Allergies, etc.
     */
     public function healthData(){
-        return $this->hasOne('App\PatientHealthData', 'patient_id');
+        return $this->hasOne('App\PatientHealthData', 'patient_id')->withDefault([
+            'id' => 0,
+            'blood_type' => 'Unknown Blood Group',
+            'food_allergies' => 'None',
+            'drug_allergies' => 'None',
+            'genetic_conditions' => 'None'
+        ]);
     }
 
     /*

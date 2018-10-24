@@ -17,7 +17,6 @@ class Hospital extends JsonResource
     {
         // return parent::toArray($request);
 
-        
         // Custom formatting
         
         return [
@@ -30,7 +29,6 @@ class Hospital extends JsonResource
             'mobile' => $this->mobile,
             'physicians' => PhysicianResource::collection($this->physicians)
         ];
-        
     }
 
     public function with($request)

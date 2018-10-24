@@ -10,6 +10,9 @@ class PhysicianDetail extends Model
     * Relation to Physician
     */
     public function physician(){
+        return $this->belongsTo('App\Physician', 'physician_id');
+
+        /*
         return $this->belongsTo('App\Physician', 'physician_id')->withDefault([
             'id' => 0,
             'title' => 'Undefined',
@@ -18,5 +21,6 @@ class PhysicianDetail extends Model
             'email' => 'Unknown',
             'specialty' => 'Undefined'
         ]);
+        */
     }
 }

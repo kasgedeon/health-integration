@@ -14,7 +14,7 @@ class ReferralsController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function index()
     {
         // Get referrals/transfers -- paginate
@@ -25,6 +25,7 @@ class ReferralsController extends Controller
         */
 
         // Return collection of referrals as a resource
+        // returnObservations();
         return ReferralResource::collection($referrals);
     }
 

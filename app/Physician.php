@@ -10,7 +10,14 @@ class Physician extends Model
     * Get more details of Physician
     */
     public function details(){
-        return $this->hasOne('App\PhysicianDetail', 'physician_id');
+        return $this->hasOne('App\PhysicianDetail', 'physician_id')->withDefault([
+            'id' => 0,
+            'title' => 'Undefined',
+            'address' => 'Unknown',
+            'mobile' => 'Unknown',
+            'email' => 'Unknown',
+            'specialty' => 'Undefined'
+        ]);
     }
 
     // Relation to Hospitals
