@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Observation;
 use App\Http\Resources\Observation as ObservationResource;
 
@@ -37,7 +38,18 @@ class ObservationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Store new Observation
+        $observation = $request->isMethod('put') ? Observation::findOrFail($request->observation_id) : new Observation ;
+        
+        // Update Observation (method ==  put)
+        $observation->id = $request->input('observation_id');
+        $observation->referral_id = $request->input('referral_id');
+        $observation->description = $request->input('description');
+        $observation->actions = $request->input('actions');
+        
+        if($observation->save()){
+            return new ObservationResource($observation);
+        }
     }
 
     /**
@@ -48,7 +60,11 @@ class ObservationsController extends Controller
      */
     public function show($id)
     {
-        //
+        // Get A Single observation-consultation
+        $observation = Observation::findOrFail($id);
+
+        // Return single lab test as a resource
+        return new ObservationResource($observation);
     }
 
     /**
@@ -82,6 +98,12 @@ class ObservationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Get lab test
+        $observation = Observation::findOrFail($id);
+
+        // Return deleted test
+        if($observation->delete()){
+            return new ObservationResource($observation);
+        }
     }
 }

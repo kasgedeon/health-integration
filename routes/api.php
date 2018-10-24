@@ -56,3 +56,33 @@ Route::get('referral/{id}', 'ReferralsController@show'); // Get single referral
 Route::post('referral', 'ReferralsController@store'); // Create new referral
 Route::put('referral', 'ReferralsController@store'); // Update referral
 Route::delete('referral/{id}', 'ReferralsController@destroy'); // Delete referral
+
+/*
+OBSERVATIONS/CONSULTATIONS CONTROLLER
+*/
+
+Route::get('observations', 'ObservationsController@index'); // List observations
+Route::get('observation/{id}', 'ObservationsController@show'); // Get single observation
+Route::post('observation', 'ObservationsController@store'); // Create new observation
+Route::put('observation', 'ObservationsController@store'); // Update observation
+Route::delete('observation/{id}', 'ObservationsController@destroy'); // Delete observation
+
+/*
+LABS/TESTS CONTROLLER
+*/
+
+Route::get('labTests', 'LabTestsController@index'); // List Lab Tests
+Route::get('labTest/{id}', 'LabTestsController@show'); // Get single Lab Test
+Route::post('labTest', 'LabTestsController@store'); // Create new Lab Test
+Route::put('labTest', 'LabTestsController@store'); // Update Lab Test
+Route::delete('labTest/{id}', 'LabTestsController@destroy'); // Delete Lab Test
+
+/*
+PRESCRIPTIONS CONTROLLER
+*/
+
+Route::get('prescriptions', 'PrescriptionsController@index'); // List prescriptions
+Route::get('prescription/{id}', 'PrescriptionsController@show'); // Get single prescription
+Route::post('prescription', 'PrescriptionsController@store'); // Create new prescription
+Route::put('prescription', 'PrescriptionsController@store'); // Update prescription
+Route::delete('prescription/{id}', 'PrescriptionsController@destroy'); // Delete prescription

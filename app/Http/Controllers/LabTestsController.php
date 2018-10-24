@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\LabTest;
 use App\Http\Resources\LabTest as LabTestResource;
 
@@ -37,7 +38,18 @@ class LabTestsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Store new labTest
+        $labTest = $request->isMethod('put') ? LabTest::findOrFail($request->labTest_id) : new LabTest ;
+        
+        // Update hospital (method ==  put)
+        $labTest->id = $request->input('labTest_id');
+        $labTest->referral_id = $request->input('referral_id');
+        $labTest->name = $request->input('lab_name');
+        $labTest->result = $request->input('lab_result');
+        
+        if($labTest->save()){
+            return new LabTestResource($labTest);
+        }
     }
 
     /**
@@ -48,7 +60,11 @@ class LabTestsController extends Controller
      */
     public function show($id)
     {
-        //
+        // Get A Single lab test
+        $labTest = LabTest::findOrFail($id);
+
+        // Return single lab test as a resource
+        return new LabTestResource($labTest);
     }
 
     /**
@@ -82,6 +98,12 @@ class LabTestsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Get lab test
+        $labTest = LabTest::findOrFail($id);
+
+        // Return deleted test
+        if($labTest->delete()){
+            return new LabTestResource($labTest);
+        }
     }
 }

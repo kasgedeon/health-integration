@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Prescription;
 use App\Http\Resources\Prescription as PrescriptionResource;
 
@@ -37,7 +38,18 @@ class PrescriptionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Store new prescription
+        $prescription = $request->isMethod('put') ? Prescription::findOrFail($request->prescription_id) : new Prescription ;
+        
+        // Update prescription (method ==  put)
+        $prescription->id = $request->input('observation_id');
+        $prescription->referral_id = $request->input('referral_id');
+        $prescription->medicine = $request->input('medicine'); // or any other treatment
+        $prescription->description = $request->input('description');
+        
+        if($prescription->save()){
+            return new PrescriptionResource($prescription);
+        }
     }
 
     /**
@@ -48,7 +60,11 @@ class PrescriptionsController extends Controller
      */
     public function show($id)
     {
-        //
+        // Get A Single prescription - treatment
+        $prescription = Prescription::findOrFail($id);
+
+        // Return single prescription as a resource
+        return new PrescriptionResource($prescription);
     }
 
     /**
@@ -82,6 +98,12 @@ class PrescriptionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Get prescription
+        $prescription = Prescription::findOrFail($id);
+
+        // Return deleted prescription
+        if($prescription->delete()){
+            return new PrescriptionResource($prescription);
+        }
     }
 }
