@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Observation as ObservationResource;
 use App\Http\Resources\LabTest as LabTestResource;
 use App\Http\Resources\Prescription as PrescriptionResource;
+use App\Http\Resources\Patient as PatientResource;
 
 class Referral extends JsonResource
 {
@@ -33,34 +34,15 @@ class Referral extends JsonResource
             /**
              * patient details
              */
-            'patient_ref_no' => $this->patient->ref_no,
-            'patient_fname' => $this->patient->first_name,
-            'patient_lname' => $this->patient->other_names,
-            'patient_sex' => $this->patient->details->sex,
-            'patient_dob' => $this->patient->details->dob,
-            'patient_address' => $this->patient->details->address,
-            'patient_mobile' => $this->patient->details->mobile,
-            'patient_occupation' => $this->patient->details->occupation,
-            'patient_blood_group' => $this->patient->healthData->blood_type,
-            'patient_food_allergies' => $this->patient->healthData->food_allergies,
-            'patient_drug_allergies' => $this->patient->healthData->drug_allergies,
-            'patient_genetic_conditions' => $this->patient->healthData->genetic_conditions,
-            'patient_created_at' => $this->patient->created_at,
-            
+            'patient' => $this->patient,
+        
             /**
              * referring & referrer hospitals
              */
-            'referral_from_hospital_id' => $this->fromPhysician->hospital_id,
-            'referral_from_hospital_name' => $this->fromPhysician->hospital->name,
-            'referral_from_doctor_title' => $this->fromPhysician->details->title,
-            'referral_from_doctor_name' => $this->fromPhysician->other_names,
-            'referral_from_doctor_specialty' => $this->fromPhysician->details->specialty,
-            'referral_from_doctor_mobile' => $this->fromPhysician->details->mobile,
-            'referral_to_hospital_id' => $this->toHospital->id,
-            'referral_to_hospital_name' => $this->toHospital->name,
-            'referral_to_hospital_type' => $this->toHospital->type,
-            'referral_to_hospital_address' => $this->toHospital->address,
-
+            'origin_hospital' => $this->fromPhysician->hospital,
+            'origin_physician' => $this->fromPhysician,
+            'destination_hospital' => $this->toHospital,
+            
             /**
              * referral medical information (observations, lab tests, prescriptions)
              */
@@ -78,4 +60,33 @@ class Referral extends JsonResource
             'author_url' => 'gedkas.me'
         ];
     }
+
+            /*
+            'patient_ref_no' => $this->patient->ref_no,
+            'patient_fname' => $this->patient->first_name,
+            'patient_lname' => $this->patient->other_names,
+            'patient_sex' => $this->patient->details->sex,
+            'patient_dob' => $this->patient->details->dob,
+            'patient_address' => $this->patient->details->address,
+            'patient_mobile' => $this->patient->details->mobile,
+            'patient_occupation' => $this->patient->details->occupation,
+            'patient_blood_group' => $this->patient->healthData->blood_type,
+            'patient_food_allergies' => $this->patient->healthData->food_allergies,
+            'patient_drug_allergies' => $this->patient->healthData->drug_allergies,
+            'patient_genetic_conditions' => $this->patient->healthData->genetic_conditions,
+            'patient_created_at' => $this->patient->created_at,
+            */
+
+            /*
+            'referral_from_hospital_id' => $this->fromPhysician->hospital_id,
+            'referral_from_hospital_name' => $this->fromPhysician->hospital->name,
+            'referral_from_doctor_title' => $this->fromPhysician->details->title,
+            'referral_from_doctor_name' => $this->fromPhysician->other_names,
+            'referral_from_doctor_specialty' => $this->fromPhysician->details->specialty,
+            'referral_from_doctor_mobile' => $this->fromPhysician->details->mobile,
+            'referral_to_hospital_id' => $this->toHospital->id,
+            'referral_to_hospital_name' => $this->toHospital->name,
+            'referral_to_hospital_type' => $this->toHospital->type,
+            'referral_to_hospital_address' => $this->toHospital->address,
+            */
 }

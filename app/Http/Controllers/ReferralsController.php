@@ -67,6 +67,22 @@ class ReferralsController extends Controller
         return new ReferralResource($referral);
     }
 
+    /**
+     * Display the specified resource - referrals of a hospital.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function list($id)
+    {
+        // Get referrals relating to a hospital
+        
+        $referrals = Referral::where('to_hospital_id', $id)->get();
+        
+        // Return single article as a resource
+        return ReferralResource::collection($referrals);
+    }
+
 
     /**
      * Update the specified resource in storage.

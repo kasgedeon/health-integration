@@ -24,6 +24,19 @@ class Patient extends JsonResource
             'first_name' => $this->first_name,
             'other_names' => $this->other_names,
             'reference_no' => $this->ref_no,
+            'patient_details' => $this->details,
+            'patient_healthData' => $this->healthData,
+            /*
+            'sex' => $this->details->sex,
+            'dob' => $this->details->dob,
+            'address' => $this->details->address,
+            'mobile' => $this->details->mobile,
+            'occupation' => $this->details->occupation,
+            'blood_group' => $this->healthData->blood_type,
+            'food_allergies' => $this->healthData->food_allergies,
+            'drug_allergies' => $this->healthData->drug_allergies,
+            'genetic_conditions' => $this->healthData->genetic_conditions,
+            */
             'referrals' => ReferralResource::collection($this->referrals),
             'created_by' => $this->created_by,
             'created_at' => $this->created_at

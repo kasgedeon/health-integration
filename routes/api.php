@@ -53,6 +53,7 @@ REFERRALS CONTROLLER
 
 Route::get('referrals', 'ReferralsController@index'); // List referrals
 Route::get('referral/{id}', 'ReferralsController@show'); // Get single referral
+Route::get('hospitalreferrals/{id}', 'ReferralsController@list'); // Get referrals belonging to a hospital
 Route::post('referral', 'ReferralsController@store'); // Create new referral
 Route::put('referral', 'ReferralsController@store'); // Update referral
 Route::delete('referral/{id}', 'ReferralsController@destroy'); // Delete referral
