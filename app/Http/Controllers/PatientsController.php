@@ -63,7 +63,8 @@ class PatientsController extends Controller
     public function show($id)
     {
         // Get A Single patient
-        $patient = Patient::findOrFail($id);
+        $patient = Patient::where('ref_no', $id)->firstOrFail();
+        //$patient = Patient::findOrFail($id);
 
         // Return single article as a resource
         return new PatientResource($patient);

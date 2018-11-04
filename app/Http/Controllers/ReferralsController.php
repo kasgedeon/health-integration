@@ -18,14 +18,9 @@ class ReferralsController extends Controller
     public function index()
     {
         // Get referrals/transfers -- paginate
-        $referrals = Referral::paginate(20);
-        /*
-        $referrals = Patient::all();
-        $referrals = Patient::orderBy('created_at', 'desc')->get();
-        */
-
+        $referrals = Referral::orderBy('created_at', 'desc')->paginate(20);
+        
         // Return collection of referrals as a resource
-        // returnObservations();
         return ReferralResource::collection($referrals);
     }
 
@@ -77,7 +72,7 @@ class ReferralsController extends Controller
     {
         // Get referrals relating to a hospital
         
-        $referrals = Referral::where('to_hospital_id', $id)->get();
+        $referrals = Referral::orderBy('created_at', 'desc')->where('to_hospital_id', $id)->get();
         
         // Return single article as a resource
         return ReferralResource::collection($referrals);
