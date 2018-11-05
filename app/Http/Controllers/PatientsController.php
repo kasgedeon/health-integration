@@ -7,6 +7,7 @@ use App\Http\Requests;
 use DB;
 use App\Patient;
 use App\PatientDetail;
+use  App\PatientHealthData;
 use App\Http\Resources\Patient as PatientResource;
 
 class PatientsController extends Controller
@@ -19,7 +20,7 @@ class PatientsController extends Controller
     public function index()
     {
         // Get patients -- paginate
-        $patients = Patient::paginate(20);
+        $patients = Patient::orderBy('created_at', 'desc')->paginate(20);
         $patientDetails = PatientDetail::all();
         /*
         $patients = Patient::all();
@@ -50,6 +51,47 @@ class PatientsController extends Controller
         $patient->created_by = $request->input('created_by');
         
         if($patient->save()){
+            return new PatientResource($patient);
+        }
+    }
+
+    public function storeDetails(Request $request)
+    {
+        // Store new patient
+        $patientDetail = $request->isMethod('put') ? PatientDetail::where('patient_id', $request->patient_id)->firstOrFail() : new PatientDetail ;
+        
+        // Update patient (method ==  put)
+        $patientDetail->sex = $request->input('sex');
+        $patientDetail->dob = $request->input('dob');
+        $patientDetail->address = $request->input('address');
+        $patientDetail->county = $request->input('county');
+        $patientDetail->mobile = $request->input('mobile');
+        $patientDetail->email = $request->input('email');
+        $patientDetail->occupation = $request->input('occupation');
+        $patientDetail->patient_id = $request->input('patient_id');
+
+        //$patientDetail->save();
+        if($patientDetail->save()){
+            $patient = Patient::findOrFail($request->patient_id);
+            return new PatientResource($patient);
+        }
+    }
+
+    public function storeHealthData(Request $request)
+    {
+        // Store new patient
+        $patientHealthData = $request->isMethod('put') ? PatientHealthData::where('patient_id', $request->patient_id)->firstOrFail() : new PatientHealthData ;
+        
+        // Update patient (method ==  put)
+        $patientHealthData->patient_id = $request->input('patient_id');
+        $patientHealthData->blood_type = $request->input('blood_type');
+        $patientHealthData->food_allergies = $request->input('food_allergies');
+        $patientHealthData->drug_allergies = $request->input('drug_allergies');
+        $patientHealthData->genetic_conditions = $request->input('genetic_conditions');
+
+        //$patientHealthData->save();
+        if($patientHealthData->save()){
+            $patient = Patient::findOrFail($request->patient_id);
             return new PatientResource($patient);
         }
     }

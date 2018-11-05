@@ -24,6 +24,8 @@ PATIENTS CONTROLLER
 Route::get('patients', 'PatientsController@index'); // List patients
 Route::get('patient/{id}', 'PatientsController@show'); // Get single patient
 Route::post('patient', 'PatientsController@store'); // Create new patient
+Route::post('patientDetails', 'PatientsController@storeDetails'); // Save patient details
+Route::post('patientHealth', 'PatientsController@storeHealthData'); // Save patient health data
 Route::put('patient', 'PatientsController@store'); // Update patient
 Route::delete('patient/{id}', 'PatientsController@destroy'); // Delete patient
 

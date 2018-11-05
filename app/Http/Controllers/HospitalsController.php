@@ -58,7 +58,8 @@ class HospitalsController extends Controller
     public function show($id)
     {
         // Get A Single hospital
-        $hospital = Hospital::findOrFail($id);
+        $hospital = Hospital::where('ref_no', $id)->firstOrFail();
+        //$hospital = Hospital::findOrFail($id);        
 
         // Return single article as a resource
         return new HospitalResource($hospital);
