@@ -72,7 +72,7 @@ class PatientsController extends Controller
 
         //$patientDetail->save();
         if($patientDetail->save()){
-            $patient = Patient::findOrFail($request->patient_id);
+            $patient = Patient::where('id', $request->patient_id)->firstOrFail();
             return new PatientResource($patient);
         }
     }
@@ -91,7 +91,7 @@ class PatientsController extends Controller
 
         //$patientHealthData->save();
         if($patientHealthData->save()){
-            $patient = Patient::findOrFail($request->patient_id);
+            $patient = Patient::where('id', $request->patient_id)->firstOrFail();
             return new PatientResource($patient);
         }
     }

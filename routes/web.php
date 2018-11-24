@@ -11,6 +11,14 @@
 |
 */
 
+Route::get('/admin', 'PagesController@index');
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/dashboard', 'Admin\PagesController@index');
+
+Route::resource('hospitals', 'Admin\HospitalsController');
